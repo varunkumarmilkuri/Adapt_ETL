@@ -1,0 +1,35 @@
+{
+  "jobConfig": {
+    "name": "file_to_db_Mdemo",
+    "description": "",
+    "role": "arn:aws:iam::784201552332:role/adapt-glue-role",
+    "command": "pythonshell",
+    "version": "3.0",
+    "workerType": null,
+    "numberOfWorkers": null,
+    "maxCapacity": 1,
+    "maxRetries": 0,
+    "timeout": 2880,
+    "maxConcurrentRuns": 1,
+    "security": "none",
+    "scriptName": "file_to_db_Mdemo.py",
+    "scriptLocation": "s3://aws-glue-assets-784201552332-us-east-2/scripts/",
+    "language": "python-3.9",
+    "jobParameters": [],
+    "tags": [],
+    "jobMode": "DEVELOPER_MODE",
+    "createdOn": "2023-03-09T06:12:52.509Z",
+    "developerMode": true,
+    "connectionsList": [
+      "adapt_redshift_connector"
+    ],
+    "temporaryDirectory": "s3://aws-glue-assets-784201552332-us-east-2/temporary/",
+    "glueHiveMetastore": true,
+    "etlAutoTuning": false,
+    "pythonShellPrebuiltLibraryOption": "analytics",
+    "flexExecution": false,
+    "minFlexWorkers": null
+  },
+  "hasBeenSaved": false,
+  "script": "#Required libraries\r\nimport sys\r\nfrom awsglue.utils import getResolvedOptions\r\nimport redshift_connector\r\nimport pandas as pd\r\nimport psycopg2\r\nimport sqlalchemy as sa\r\nfrom sqlalchemy.engine.url import URL\r\n\r\nconn=redshift_connector.connect(\r\n\t\tdatabase='demodb',\r\n \t\thost='redshift-cluster-1.c2fnra0zrekb.us-east-2.redshift.amazonaws.com',\r\n\t\tpassword='yV3627&dGEHj',\r\n\t\tport=5439,\r\n\t\tuser='awsuser') \r\n\t\t\r\n\r\n#Reading data from redshift\r\ncursor=conn.cursor()\r\n\r\n#Params\r\ntarget_table=\"recent_joinee\"\r\ndelimiter=\",\"\r\nfile_format=\"csv\"\r\nsource=\"postgres\"\r\n\r\npath=\"s3://testadapt/output_pg_to_s3_mdemo/\"\r\n\r\n\r\ncopy_query = \"COPY %s from '%s' iam_role 'arn:aws:iam::784201552332:role/Redshift_adapt_Role' delimiter '%s' format as %s IGNOREHEADER 1;\" %(target_table,path,delimiter,file_format)\r\n\r\ncursor.execute(copy_query)\r\nconn.commit()\r\ncursor.close()\r\nconn.close()\r\n\r\n\r\n"
+}
