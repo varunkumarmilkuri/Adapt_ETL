@@ -1,0 +1,22 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "Mdemo_Postgres_to_s3",
+  "States": {
+    "Mdemo_Postgres_to_s3": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "db_to_file_Mdemo"
+      },
+      "Next": "s3_to_redshift"
+    },
+    "s3_to_redshift": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "file_to_db_Mdemo"
+      },
+      "End": true
+    }
+  }
+}
