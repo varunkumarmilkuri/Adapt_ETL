@@ -2,7 +2,7 @@ default:
   outputs:
     dev:
       account: ao91729.ap-south-1.aws
-      database: ADAPT_TESTING_SOURCE
+      database: ADAPT_TESTING
       password: Sap-Hana12
       role: accountadmin
       schema: ADAPT_SCHEMA
