@@ -1,4 +1,4 @@
-default:
+dev:
   outputs:
     dev:
     type: snowflake
