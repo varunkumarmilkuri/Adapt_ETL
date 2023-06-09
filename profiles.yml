@@ -5,7 +5,7 @@ default:
       database: ADAPT_TESTING_SOURCE
       password: Sap-Hana12
       role: accountadmin
-      schema: ADAPT_SCHEMA_SOURCE
+      schema: ADAPT_SCHEMA
       threads: 4
       type: snowflake
       user: rgayatriche12
