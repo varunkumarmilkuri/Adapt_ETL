@@ -1,13 +1,13 @@
 default:
   outputs:
     dev:
-      account: ao91729.ap-south-1.aws
+      account: aggnvrr-lb09480
       database: ADAPT_TESTING
-      password: Sap-Hana12
+      password: MyPass1234@
       role: accountadmin
       schema: ADAPT_SCHEMA
       threads: 4
       type: snowflake
-      user: rgayatriche12
+      user: adubey1
       warehouse: COMPUTE_WH
   target: dev
